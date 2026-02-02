@@ -19,7 +19,7 @@ function App() {
     <BrowserRouter>
       <AppNavbar />
 
-      <main className="" style={{ padding: "20px" }}>
+      <main className="">
         <Routes>
           {/* Home */}
           <Route
