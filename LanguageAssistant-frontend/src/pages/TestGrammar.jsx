@@ -24,40 +24,31 @@ function TestGrammar() {
           user: {src: studentAvatar, styles: { avatar: {width: "30px",height: "30px",borderRadius: "50%"}}}
         }}
         connect={{
-            url: "testes/chat",
+            url: "http://localhost:8000/chat",
             method: "POST",
         }}
 
         requestInterceptor={(details) => {
+            //console.log(details);
             // return {
             //     ...details,
-            //     headers: details.headers,
-            //     body: body
+            //     headers:,
+            //     body:
             // };
         }}
 
         responseInterceptor={async (rawResponse) => {
-            //return { ...aiMessage, text: messageText };
+            //console.log(rawResponse);
+            //return { ...aiMessage, text: };
         }}
 
         onMessage={(msg) => {
-            if (!isLoadingHistory.current) {
-                chatHistoryRef.current.push({
-                    role: msg.message["role"],
-                    message: msg.message["text"]
-                });
-            }
+            
         }}
 
         textInput={{
             placeholder: { text: "Digite seu texto..." },
-            styles: {
-                text: {
-                    width: "95%",
-                },
-                container: {
-                    width: "95%"
-                }
+                styles: { text:{width: "95%"}, container:{width:"95%"}
             }
         }}
 
