@@ -25,17 +25,18 @@ function TestGrammar() {
         }}
         connect={{
             url: "http://localhost:8000/chat",
-            method: "POST",
+            method: "POST"
         }}
 
         requestInterceptor={(details) => {
-            //console.log(details);
-            // return {
-            //     ...details,
-            //     headers:,
-            //     body:
-            // };
+          return {
+            ...details,
+            body: {
+              messages: details.body.messages
+            }
+          };
         }}
+
 
         responseInterceptor={async (rawResponse) => {
             //console.log(rawResponse);

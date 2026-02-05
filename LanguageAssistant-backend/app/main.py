@@ -1,7 +1,9 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from typing import List, Dict
+from app.models.ChatMessage import ChatMessage, ChatPayload
 import uvicorn
-
+# uvicorn app.main:app --reload
 app = FastAPI(title = "Language Assistant Api")
 
 app.add_middleware(
@@ -22,7 +24,10 @@ def root():
     }
 
 @app.post("/chat")
-async def chat(data):
+async def chat(payload: ChatPayload):
+    last_message = payload.messages[-1].text
+
     return {
-        response: "Retorno de testes"
+        "response": f"Recebi: {last_message}",
+        "history_size": len(payload.messages)
     }
