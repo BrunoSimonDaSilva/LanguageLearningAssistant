@@ -5,9 +5,6 @@ import { useContext } from "react";
 import { LanguageContext } from "../context/LanguageContext";
 import { translations } from "../Utils/translations";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignature } from "@fortawesome/free-solid-svg-icons";
-
 import senseiAvatar from "../assets/sensei.png";
 import studentAvatar from "../assets/student.png";
 
@@ -27,38 +24,31 @@ function TestGrammar() {
             url: "http://localhost:8000/chat",
             method: "POST"
         }}
-
         requestInterceptor={(details) => {
           return {
             ...details,
             body: {
-              messages: details.body.messages
+              messages: details.body.messages,
+              currentLang: language
             }
           };
         }}
-
-
         responseInterceptor={async (rawResponse) => {
-            //console.log(rawResponse);
-            //return { ...aiMessage, text: };
+            return { role: "ia", text: rawResponse.response};
         }}
+        // onMessage={(msg) => {
 
-        onMessage={(msg) => {
-            
-        }}
-
+        // }}
         textInput={{
             placeholder: { text: "Digite seu texto..." },
                 styles: { text:{width: "95%"}, container:{width:"95%"}
             }
         }}
-
         messageStyles={{
             default: {
                 shared: { bubble: { maxWidth: "100%" } }
             }
         }}
-
         introMessage={{
             html: `
               <div style="padding: 1em">

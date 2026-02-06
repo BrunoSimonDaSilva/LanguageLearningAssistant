@@ -7,3 +7,4 @@ class ChatMessage(BaseModel):
 
 class ChatPayload(BaseModel):
     messages: List[ChatMessage]
+    currentLang: str
